@@ -1,0 +1,29 @@
+<project name="calculator" default="dist">
+
+    <target name="clean">
+        <delete dir="build"/>
+    </target>
+
+    <target name="clearClasses">
+        <delete dir="build/classes"/>
+    </target>
+
+    <target name="init" depends="clean">
+        <mkdir dir="build/classes/src"/>
+    </target>
+
+    <target name="compile" depends="init">
+        <javac srcdir="src" destdir="build/classes/src" includeantruntime="false" debug="yes"/>
+    </target>
+
+    <target name="build" depends="compile">
+        <mkdir dir="build/distribute/lib"/>
+        <jar destfile="build/distribute/lib/calculator.jar" basedir="build/classes/src" update="true">
+            <manifest>
+                <attribute name="Main-class" value=""
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="dist"></target>
+</project>
